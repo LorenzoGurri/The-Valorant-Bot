@@ -1,6 +1,13 @@
 # IMPORT DISCORD.PY. ALLOWS ACCESS TO DISCORD'S API.
 import discord
 
+import os
+# Import load_dotenv function from dotenv module.
+from dotenv import load_dotenv
+# Loads the .env file that resides on the same level as the script.
+load_dotenv()
+# GRAB THE API TOKEN FROM THE .ENV FILE.
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 # GETS THE CLIENT OBJECT FROM DISCORD.PY. CLIENT IS SYNONYMOUS WITH BOT.
 bot = discord.Client(intents = discord.Intents.all())
 
@@ -35,4 +42,4 @@ async def on_message(message):
     print(message.content)
 
 # EXECUTES THE BOT WITH THE SPECIFIED TOKEN. TOKEN HAS BEEN REMOVED AND USED JUST AS AN EXAMPLE.
-bot.run("MTAyMjk1NjMxNTMzNDY4MDY5OQ.GYWUkh.qjUlNwxqBk3seR3IUAIgBrDEzFITzEwmIBRe-I")
+bot.run(DISCORD_TOKEN)
