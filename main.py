@@ -35,27 +35,57 @@ async def on_ready():
 
 #CONNECT: Users will be able to connect their Valorant accounts to the bot
 async def connect(message):
-	await(message.channel.send("Will prompt account connection"))
+	msg = discord.Embed(
+		title = "Connect Account",
+		description = "TODO: Set up connecting account",
+		color = 0xFF5733
+	)
+	await message.channel.send(embed=msg)
 
 #STATS: Users will be able to see important stats related to their Valorant Account
 async def stats(message):
-	await(message.channel.send("Will print stats"))
+	msg = discord.Embed(
+		title = "[User]'s Statisitics",
+		description = "TODO: Fetch account and print stats",
+		color = 0xFF5733
+	)
+	await message.channel.send(embed=msg)
 
 #LINEUPS: Users will be able to search for useful lineups
 async def lineups(message):
-	await(message.channel.send("Will deal with lineups"))
+	msg = discord.Embed(
+		title = "Lineups",
+		description = "TODO: Set up lineup command",
+		color = 0xFF5733
+	)
+	await message.channel.send(embed=msg)
 
 #CROSSHAIRS: Users will be able to search through various crosshairs
 async def crosshairs(message):
-	await(message.channel.send("Will show crosshair options"))
+	msg = discord.Embed(
+		title = "Crosshairs",
+		description = "TODO: Set up crosshairs command",
+		color = 0xFF5733
+	)
+	await message.channel.send(embed=msg)
 
 #AGENTS: Users will be able to see useful information about Agents
 async def agents(message):
-	await(message.channel.send("Will do agent stuff"))
+	msg = discord.Embed(
+		title = "Agents",
+		description = "TODO: Set up agents command",
+		color = 0xFF5733
+	)
+	await message.channel.send(embed=msg)
 
 #FEEDBACK: Users will be sent a link to a feedback survey
 async def feedback(message):
-	await(message.channel.send("Please leave some feedback!\nhttps://forms.gle/hcKCUBtCyd1Zcn2Z8"))
+	msg = discord.Embed(
+		title = "Feedback",
+		description = "Please leave some feedback!\nhttps://forms.gle/hcKCUBtCyd1Zcn2Z8",
+		color = 0xFF5733
+	)
+	await message.channel.send(embed=msg)
 
 
 # EVENT LISTENER FOR WHEN A NEW MESSAGE IS SENT TO A CHANNEL.
