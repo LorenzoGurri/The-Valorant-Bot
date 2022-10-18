@@ -65,7 +65,6 @@ async def on_message(message):
 	if message.author == bot.user:
 		return
 
-
 	# Queue for the bot to listen
 	if message.content.startswith("!tvb"):
 		print("found command")
