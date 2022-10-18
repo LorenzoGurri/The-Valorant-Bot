@@ -84,9 +84,9 @@ async def on_message(message):
 			elif msg[1] == "feedback":
 				await feedback(message)
 			else:
-				await message.channel.send("Command not found!")
+				await message.channel.send("**ERROR**: Command not found!")
 		else:
-			await message.channel.send("USAGE: !tvb [command]")
+			await message.channel.send("**USAGE**: !tvb [command]")
 
 
 	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
