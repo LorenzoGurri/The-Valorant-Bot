@@ -1,0 +1,15 @@
+{
+	"agent": "astra",
+	"abilities": [
+		{
+			"Name" : "Nova Pulse",
+			"Description" : "Place Stars in Astral Form (Ultimate Key). ACTIVATE a Star to detonate a Nova Pulse. The Nova Pulse charges briefly then strikes, concussing all players in its area.",
+			"Price" : "N/A"
+		},
+		{
+			"Name" : "Nebula/Dissipate",
+			"Description" : "Place Stars in Astral Form (Ultimate Key). ACTIVATE a Star to transform it into a Nebula (smoke). USE a Star to Dissipate it, returning the star to be placed in a new location after a delay. Dissipate briefly forms a fake Nebula at the Star's location before returning.",
+			"Price" : "N/A"
+		}
+	]
+}
