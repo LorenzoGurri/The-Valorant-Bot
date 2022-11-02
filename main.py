@@ -146,7 +146,7 @@ async def agents(msg, channel):
 		for ability in abilities:
 			icon = ability['displayIcon']
 			output.add_field(
-				name="Ability: " + ability['name'],
+				name="Ability: " + ability['name'] + " (" + ability['slot']+")",
 				value=ability['description'],
 				inline=False
 			)
