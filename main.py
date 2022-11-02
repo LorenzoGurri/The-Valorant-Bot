@@ -4,6 +4,7 @@ import discord
 import os
 import requests
 from dotenv import load_dotenv
+import json
 
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
@@ -103,12 +104,57 @@ async def crosshairs(msg, channel):
 
 #AGENTS: Users will be able to see useful information about Agents
 async def agents(msg, channel):
-	msg = discord.Embed(
-		title = "Agents",
-		description = "TODO: Set up agents command",
-		color = 0x0000FF
-	)
-	await channel.send(embed=msg)
+	if len(msg) == 2:
+		msg = discord.Embed(
+			title = "Available Agents",
+			description = "Astra, Breach, Brimstone, Chmaber, Cypher, Fade, Harbor, Jett, KAY/O, Killjoy, Neon, Omen, Pheonix, Raze, Reyna, Sage, Skye, Sova, Viper, Yoru",
+			color = 0x0000FF
+		)
+		await channel.send(embed=msg)
+		return
+
+	if len(msg) != 3:
+		await channel.send("**USAGE**: !tvb agents [agent_name]")
+		return
+	else:
+		agentName = msg[2]
+		path = "agents/"+agentName.lower()+".json"
+		try:
+			with open(path, 'r') as f:
+				data = json.load(f)
+		except:
+			await channel.send("Invalid Agent Name")
+			return
+
+		#Start of output
+		name = data['agent']
+		role = data['role']['roleName']
+		output = discord.Embed(
+			title = "Agent: {} ({})".format(name,role),
+			color = discord.Color.blue()		
+		)
+
+		description = data['description']
+		image = data['displayIcon']
+		abilities = data['abilities']
+
+
+		output.add_field(
+			name="Description",
+			value=description
+		)
+		for ability in abilities:
+			icon = ability['displayIcon']
+			output.add_field(
+				name="Ability: " + ability['name'],
+				value=ability['description'],
+				inline=False
+			)
+		output.set_thumbnail(
+			url=image
+		)
+		await channel.send(embed=output)
+
 
 #FEEDBACK: Users will be sent a link to a feedback survey
 async def feedback(msg, channel):
