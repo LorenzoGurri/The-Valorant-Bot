@@ -1,0 +1,40 @@
+{
+	"agent": "Killjoy",
+	"description": "The genius of Germany, Killjoy secures and defends key battlefield positions with a collection of traps, turrets, and mines. Each invention is primed to punish any assailant too dumb to back down.",
+	"displayIcon": "https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/displayicon.png",
+    "displayIconSmall": "https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/displayiconsmall.png",
+	"role": {
+		"roleName": "Sentinel",
+		"description": "Sentinels are defensive experts who can lock down areas and watch flanks, both on attacker and defender rounds."
+	},
+	"abilities": [
+		{
+			"slot": "Ability 1",
+			"name": "Nanoswarm",
+			"description": "EQUIP a Nanoswarm grenade. FIRE to throw the grenade. Upon landing, the Nanoswarm goes covert. ALT FIRE to lob. ACTIVATE the Nanoswarm to deploy a damaging swarm of nanobots.",
+			"displayIcon": "https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/abilities/grenade/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ability 2",
+			"name": "ALARMBOT",
+			"description": "EQUIP a covert Alarmbot. FIRE to deploy a bot that hunts down enemies that get in range.  After reaching its target, the bot explodes and applies Vulnerable to enemies in the area. HOLD EQUIP to recall a deployed bot.",
+			"displayIcon": "https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/abilities/ability1/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ability 3",
+			"name": "",
+			"description": "",
+			"displayIcon": "",
+			"cost": null
+		},
+		{
+			"slot": "",
+			"name": "",
+			"description": "",
+			"displayIcon": "",
+			"cost": null
+		}
+	]
+}
