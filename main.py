@@ -119,6 +119,15 @@ async def feedback(msg, channel):
 	)
 	await channel.send(embed=msg)
 
+#HELP: Users will be able top see what commands we offer
+async def help(msg, channel):
+	msg = discord.Embed(
+		title = "help",
+		description = "Tony's Job!",
+		color = 0x0000FF
+	)
+	await channel.send(embed=msg)
+
 
 # EVENT LISTENER FOR WHEN A NEW MESSAGE IS SENT TO A CHANNEL.
 @bot.event
@@ -143,6 +152,8 @@ async def on_message(message):
 				await agents(msg, message.channel)
 			elif msg[1] == "feedback":
 				await feedback(msg, message.channel)
+			elif msg[1] == "help":
+				await help(msg, message.channel)
 			else:
 				await message.channel.send("**ERROR**: Command not found!")
 		else:
