@@ -4,6 +4,7 @@ import discord
 import os
 import requests
 from dotenv import load_dotenv
+from discord.ui import Button, View
 
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
@@ -92,15 +93,6 @@ async def lineups(msg, channel):
 	)
 	await channel.send(embed=msg)
 
-#CROSSHAIRS: Users will be able to search through various crosshairs
-async def crosshairs(msg, channel):
-	msg = discord.Embed(
-		title = "Crosshairs",
-		description = "TODO: Set up crosshairs command",
-		color = 0x0000FF
-	)
-	await channel.send(embed=msg)
-
 #AGENTS: Users will be able to see useful information about Agents
 async def agents(msg, channel):
 	msg = discord.Embed(
@@ -119,13 +111,71 @@ async def feedback(msg, channel):
 	)
 	await channel.send(embed=msg)
 
-#HELP: Users will be able top see what commands we offer
-async def help(msg, channel):
+#CROSSHAIRS: Users will be able to search through various crosshairs
+async def crosshairs(msg, channel):
 	msg = discord.Embed(
-		title = "help",
-		description = "Tony's Job!",
+		title = "Crosshairs",
+		description = "Work in Progress",
 		color = 0x0000FF
 	)
+	view = View()
+	probutton = Button(label = "PRO Buttons",
+		style = discord.ButtonStyle.primary 
+		)
+	funnyButton = Button(label = "Funny Crosshairs", 
+		style = discord.ButtonStyle.secondary
+		)
+	probutton.callback = proButtonClick
+
+	view.add_item(probutton)
+	view.add_item(funnyButton)
+	await channel.send(embed=msg, view = view)
+
+async def proButtonClick(interaction):
+	C9Button = Button(label = "C9 Crosshairs")
+	await interaction.response.send_message("You're not good enough for Pro Crosshairs")
+
+#HELP: Users will be able top see what commands we offer
+async def help(msg, channel, message):
+	print("MSG:",msg, "CHANNEL:",channel)
+	msg = discord.Embed(
+		title = "Help",
+		description = "Functions allowed for The Valorant Bot",
+		color = 0xFF5733
+	)
+	msg.add_field(
+		name = "Connect",
+		value = "!tvb connect", 
+		inline = False
+		)
+	msg.add_field(
+		name = "Stats (complete)", 
+		value = "!tvb stats [region] [Username#Tag]",
+		inline = False
+		)
+	msg.add_field(
+		name = "Lineups",
+		value = "!tvb lineups",
+		inline = False
+		)
+	msg.add_field(
+		name = "Agents", 
+		value = "!tvb agents [Agent Name]",
+		inline = False
+		)
+	msg.add_field(
+		name = "Feedback (complete)",
+		value = "!tvb feedback",
+		inline = False
+		)
+	msg.add_field(
+		name = "Help (complete)",
+		value = "You already used this command to see this??? \n but ... !tvb help", 
+		inline = False
+		)
+	msg.set_footer(
+		text = "Information Requested by: {}".format(message.author.display_name)
+		)
 	await channel.send(embed=msg)
 
 
@@ -153,12 +203,15 @@ async def on_message(message):
 			elif msg[1] == "feedback":
 				await feedback(msg, message.channel)
 			elif msg[1] == "help":
-				await help(msg, message.channel)
+				await help(msg, message.channel, message)
 			else:
 				await message.channel.send("**ERROR**: Command not found!")
 		else:
 			await message.channel.send("**USAGE**: !tvb [command]")
-
+	# Sends Webex Link for are Wednesday Meetings 
+	elif message.content.startswith("Meeting") or message.content.startswith("meet"):
+		await message.channel.send("https://rensselaer.webex.com/meet/toftl")
+		
 
 	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
 	if message.content == "hello":
