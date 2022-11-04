@@ -1,0 +1,54 @@
+{
+	"agent": "Viper",
+	"description": "The American Chemist, Viper deploys an array of poisonous chemical devices to control the battlefield and cripple the enemy's vision. If the toxins don't kill her prey, her mindgames surely will.",
+	"displayIcon": "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/displayicon.png",
+    "displayIconSmall": "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/displayiconsmall.png",
+	"role": {
+		"roleName": "Controller",
+		"description": "Controllers are experts in slicing up dangerous territory to set their team up for success."
+	},
+	"abilities": [
+		{
+			"slot": "Ability 1",
+			"name": "Poison Cloud",
+			"description": "EQUIP a gas emitter. FIRE to throw the emitter that perpetually remains throughout the round. ALT FIRE to lob. RE-USE the ability to create a toxic gas cloud at the cost of fuel. This ability can be RE-USED more than once and can be picked up to be REDEPLOYED.",
+			"displayIcon": "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/abilities/ability1/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ability 2",
+			"name": "Toxic Screen",
+			"description": "EQUIP a gas emitter launcher that penetrates terrain. FIRE to deploy a long line of gas emitters. RE-USE the ability to create a tall wall of toxic gas at the cost of fuel. This ability can be RE-USED more than once.",
+			"displayIcon": "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/abilities/ability2/displayicon.png",
+			"cost": null
+		},
+		{
+			"slot": "Ability 3",
+			"name": "Snake Bite",
+			"description": "EQUIP a chemical launcher. FIRE to launch a canister that shatters upon hitting the floor, creating a lingering chemical zone that damages and applies Vulnerable.",
+			"displayIcon": "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/abilities/grenade/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ultimate",
+			"name": "Viper's Pit",
+			"description": "EQUIP a chemical sprayer. FIRE to spray a chemical cloud in all directions around Viper, creating a large cloud that reduces the vision range of players and maximum health of enemies inside of it. HOLD the ability key to disperse the cloud early.",
+			"displayIcon": "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/abilities/ultimate/displayicon.png",
+			"cost": null
+		},
+		{
+          "slot": "Passive",
+          "name": "Toxic",
+          "description": "You gradually generate and replenish the toxin that fuels your abilities.  Enemies that cross through Viper's Poison Cloud, Toxic Screen, or Viper's Pit are instantly inflicted with at least 50 decay. Their decay level increases the longer they remain in contact with it.",
+          "displayIcon": null,
+          "cost": null
+        },
+		{
+          "slot": "Passive",
+          "name": "Fuel",
+          "description": "You gradually generate and replenish the toxin that fuels your abilities.",
+          "displayIcon": null,
+          "cost": null
+        }
+	]
+}

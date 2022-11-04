@@ -31,9 +31,9 @@
 		},
 		{
 			"slot": "Ultimate",
-			"name": "",
-			"description": "",
-			"displayIcon": "",
+			"name": "Tour De Force",
+			"description": "ACTIVATE to summon a powerful, custom sniper rifle that will kill an enemy with any direct hit to the upper body.  Killing an enemy creates a lingering field that slows players caught inside of it.",
+			"displayIcon": "https://media.valorant-api.com/agents/22697a3d-45bf-8dd7-4fec-84a9e28c69d7/abilities/ultimate/displayicon.png",
 			"cost": 8
 		}
 	]
