@@ -5,6 +5,10 @@ import os
 import requests
 from dotenv import load_dotenv
 
+#MongoDB stuff
+import pymongo
+from pymongo import MongoClient
+
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
 # GRAB THE API TOKEN FROM THE .ENV FILE.
@@ -14,6 +18,17 @@ if(DISCORD_TOKEN == "knf"):
 	exit(1)
 # GETS THE CLIENT OBJECT FROM DISCORD.PY. CLIENT IS SYNONYMOUS WITH BOT.
 bot = discord.Client(intents = discord.Intents.all())
+
+#get the Databases
+CONNECTION_URL = os.getenv("DB_CONNECTION", "knf")
+if(CONNECTION_URL == "knf"):
+	print("Error: Key not found!")
+	exit(1)
+cluster = MongoClient(CONNECTION_URL)
+
+db = cluster["ValorantBot"]
+
+collection = db["Player"]
 
 command = "!tbv"
 api_link = "https://api.henrikdev.xyz/valorant/"
@@ -37,12 +52,30 @@ async def on_ready():
 
 #CONNECT: Users will be able to connect their Valorant accounts to the bot
 async def connect(msg, channel):
-	msg = discord.Embed(
+	message = discord.Embed(
 		title = "Connect Account",
 		description = "TODO: Set up connecting account",
 		color = 0x0000FF
 	)
-	await channel.send(embed=msg)
+	#sample program of adding to the the database
+	myquery = { "_id": msg.author.id }
+	if (collection.count_documents(myquery) == 0):
+		if "python" in str(msg.content.lower()):
+			post = {"_id": msg.author.id, "score": 1}
+			collection.insert_one(post)
+			await msg.channel.send('accepted!')
+	else:
+		if "python" in str(msg.content.lower()):
+			query = {"_id": msg.author.id}
+			user = collection.find(query)
+			for result in user:
+				score = result["score"]
+			score = score + 1
+			collection.update_one({"_id":msg.author.id}, {"$set":{"score":score}})
+			await msg.channel.send('accepted!')
+		else:
+			await msg.channel.send("**ERROR**: Command not found!")
+	await channel.send(embed=message)
 
 #STATS: Users will be able to see important stats related to their Valorant Account
 async def stats(msg, channel, author):
@@ -135,13 +168,15 @@ async def on_message(message):
 	# Make sure it doesn't respond to itself in it's own response
 	if message.author == bot.user:
 		return
+    
 
 	# Queue for the bot to listen
 	if message.content.startswith("!tvb"):
 		msg = message.content.split(" ")
 		if len(msg) > 1:
 			if msg[1] == "connect":
-				await connect(msg, message.channel)
+				await connect(message, message.channel)
+				
 			elif msg[1] == "stats":
 				await stats(msg, message.channel, message.author)
 			elif msg[1] == "lineups":
@@ -154,8 +189,6 @@ async def on_message(message):
 				await feedback(msg, message.channel)
 			elif msg[1] == "help":
 				await help(msg, message.channel)
-			else:
-				await message.channel.send("**ERROR**: Command not found!")
 		else:
 			await message.channel.send("**USAGE**: !tvb [command]")
 
@@ -173,6 +206,7 @@ async def on_message(message):
 	print("hello")
 	print("message contnet: ")
 	print(message.content)
-
+	print(f"{message.channel}: {message.author}: {message.author.name}: {message.content}")
+	
 # EXECUTES THE BOT WITH THE SPECIFIED TOKEN. TOKEN HAS BEEN REMOVED AND USED JUST AS AN EXAMPLE.
 bot.run(DISCORD_TOKEN)
