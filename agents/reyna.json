@@ -1,0 +1,40 @@
+{
+	"agent": "Reyna",
+	"description": "",
+	"displayIcon": "",
+    "displayIconSmall": "",
+	"role": {
+		"roleName": "",
+		"description": ""
+	},
+	"abilities": [
+		{
+			"slot": "",
+			"name": "",
+			"description": "",
+			"displayIcon": "",
+			"cost": null
+		},
+		{
+			"slot": "",
+			"name": "",
+			"description": "",
+			"displayIcon": "",
+			"cost": null
+		},
+		{
+			"slot": "",
+			"name": "",
+			"description": "",
+			"displayIcon": "",
+			"cost": null
+		},
+		{
+			"slot": "",
+			"name": "",
+			"description": "",
+			"displayIcon": "",
+			"cost": null
+		}
+	]
+}

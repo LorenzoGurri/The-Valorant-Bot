@@ -24,17 +24,17 @@
 		},
 		{
 			"slot": "Ability 3",
-			"name": "",
-			"description": "",
-			"displayIcon": "",
+			"name": "TURRET",
+			"description": "EQUIP a Turret. FIRE to deploy a turret that fires at enemies in a 180 degree cone. ALT FIRE to swap turret direction. HOLD EQUIP to recall the deployed turret.",
+			"displayIcon": "https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/abilities/ability2/displayicon.png",
 			"cost": null
 		},
 		{
-			"slot": "",
-			"name": "",
-			"description": "",
-			"displayIcon": "",
-			"cost": null
+			"slot": "Ultimate",
+			"name": "Lockdown",
+			"description": "EQUIP the Lockdown device. FIRE to deploy the device. After a long windup, the device Detains all enemies caught in the radius. The device can be destroyed by enemies.",
+			"displayIcon": "https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/abilities/ultimate/displayicon.png",
+			"cost": 7
 		}
 	]
 }
