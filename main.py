@@ -119,6 +119,8 @@ async def agents(msg, channel):
 	else:
 		agentName = msg[2]
 		path = "agents/"+agentName.lower()+".json"
+		if agentName.lower() == "kay/o":
+			path = "agents/kayo.json"
 		try:
 			with open(path, 'r') as f:
 				data = json.load(f)
@@ -145,11 +147,31 @@ async def agents(msg, channel):
 		)
 		for ability in abilities:
 			icon = ability['displayIcon']
-			output.add_field(
-				name="Ability: " + ability['name'] + " (" + ability['slot']+")",
-				value=ability['description'],
-				inline=False
-			)
+			slot = ability['slot']
+			if slot == 'Ultimate':
+				output.add_field(
+					name="Ability: " + ability['name'] + " (" + slot+")",
+					value=ability['description'] + "\n*"+ str(ability['cost']) + " Points*",
+					inline=False
+				)
+			elif slot == 'Passive':
+				output.add_field(
+					name="Ability: " + ability['name'] + " (" + slot+")",
+					value=ability['description'],
+					inline=False
+				)
+			elif ability['cost'] == 'null':
+				output.add_field(
+					name="Ability: " + ability['name'] + " (" + slot+")",
+					value=ability['description'] + "\n*Cost: Free*",
+					inline=False
+				)
+			else:
+				output.add_field(
+					name="Ability: " + ability['name'] + " (" + slot+")",
+					value=ability['description'] + "\n*Cost: " + str(ability['cost']) + " credits*",
+					inline=False
+				)
 		output.set_thumbnail(
 			url=image
 		)

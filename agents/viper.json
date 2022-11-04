@@ -34,7 +34,7 @@
 			"name": "Viper's Pit",
 			"description": "EQUIP a chemical sprayer. FIRE to spray a chemical cloud in all directions around Viper, creating a large cloud that reduces the vision range of players and maximum health of enemies inside of it. HOLD the ability key to disperse the cloud early.",
 			"displayIcon": "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/abilities/ultimate/displayicon.png",
-			"cost": null
+			"cost": 7
 		},
 		{
           "slot": "Passive",
