@@ -58,23 +58,21 @@ async def connect(msg, channel):
 		color = 0x0000FF
 	)
 	#sample program of adding to the the database
-	myquery = { "_id": msg.author.id }
-	if (collection.count_documents(myquery) == 0):
-		if "python" in str(msg.content.lower()):
-			post = {"_id": msg.author.id, "score": 1}
-			collection.insert_one(post)
-			await msg.channel.send('accepted!')
-	else:
-		if "python" in str(msg.content.lower()):
-			query = {"_id": msg.author.id}
-			user = collection.find(query)
-			for result in user:
-				score = result["score"]
-			score = score + 1
-			collection.update_one({"_id":msg.author.id}, {"$set":{"score":score}})
-			await msg.channel.send('accepted!')
+	DiscordIDquery = { "Discord_id": msg.author.id }
+	if (collection.count_documents(DiscordIDquery) == 0):
+		print("msg: ", msg)
+		#msgContent = msg.content.split(" ")
+		Valusername = msg.content[13:]
+		ValIDQuery =  {"Valorant_ID": Valusername}
+		if(collection.count_documents(ValIDQuery) != 0):
+			message.description = 'Someone already claimed your account!!!'
 		else:
-			await msg.channel.send("**ERROR**: Command not found!")
+			print("Val username: ", Valusername)
+			post = {"Discord_id": msg.author.id, "Valorant_ID": Valusername}
+			collection.insert_one(post)
+			message.description = 'accepted!'
+	else:
+		message.description = "**ERROR**: User already in DATABASE!"
 	await channel.send(embed=message)
 
 #STATS: Users will be able to see important stats related to their Valorant Account
