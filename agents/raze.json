@@ -1,0 +1,40 @@
+{
+	"agent": "Raze",
+	"description": "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of \"boom\".",
+	"displayIcon": "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/displayicon.png",
+    "displayIconSmall": "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/displayiconsmall.png",
+	"role": {
+		"roleName": "Duelist",
+		"description": "Duelists are self-sufficient fraggers who their team expects, through abilities and skills, to get high frags and seek out engagements first."
+	},
+	"abilities": [
+		{
+			"slot": "Ability 1",
+			"name": "Blast Pack",
+			"description": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit.",
+			"displayIcon": "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/abilities/ability1/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ability 2",
+			"name": "Paint Shells",
+			"description": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range. ALT FIRE to lob.",
+			"displayIcon": "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/abilities/ability2/displayicon.png",
+			"cost": null
+		},
+		{
+			"slot": "Ability 3",
+			"name": "Boom Bot",
+			"description": "EQUIP a Boom Bot. FIRE will deploy the bot, causing it to travel in a straight line on the ground, bouncing off walls. The Boom Bot will lock on to any enemies in its frontal cone and chase them, exploding for heavy damage if it reaches them.",
+			"displayIcon": "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/abilities/grenade/displayicon.png",
+			"cost": 300
+		},
+		{
+			"slot": "Ultimate",
+			"name": "Showstopper",
+			"description": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
+			"displayIcon": "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/abilities/ultimate/displayicon.png",
+			"cost": 8
+		}
+	]
+}

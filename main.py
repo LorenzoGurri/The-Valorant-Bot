@@ -4,6 +4,7 @@ import discord
 import os
 import requests
 from dotenv import load_dotenv
+import json
 
 #MongoDB stuff
 import pymongo
@@ -152,12 +153,79 @@ async def crosshairs(msg, channel):
 
 #AGENTS: Users will be able to see useful information about Agents
 async def agents(msg, channel):
-	msg = discord.Embed(
-		title = "Agents",
-		description = "TODO: Set up agents command",
-		color = 0x0000FF
-	)
-	await channel.send(embed=msg)
+	if len(msg) == 2:
+		msg = discord.Embed(
+			title = "Available Agents",
+			description = "Astra, Breach, Brimstone, Chmaber, Cypher, Fade, Harbor, Jett, KAY/O, Killjoy, Neon, Omen, Pheonix, Raze, Reyna, Sage, Skye, Sova, Viper, Yoru",
+			color = 0x0000FF
+		)
+		await channel.send(embed=msg)
+		return
+
+	if len(msg) != 3:
+		await channel.send("**USAGE**: !tvb agents [agent_name]")
+		return
+	else:
+		agentName = msg[2]
+		path = "agents/"+agentName.lower()+".json"
+		if agentName.lower() == "kay/o":
+			path = "agents/kayo.json"
+		try:
+			with open(path, 'r') as f:
+				data = json.load(f)
+		except:
+			await channel.send("Invalid Agent Name")
+			return
+
+		#Start of output
+		name = data['agent']
+		role = data['role']['roleName']
+		output = discord.Embed(
+			title = "Agent: {} ({})".format(name,role),
+			color = discord.Color.blue()		
+		)
+
+		description = data['description']
+		image = data['displayIcon']
+		abilities = data['abilities']
+
+
+		output.add_field(
+			name="Description",
+			value=description
+		)
+		for ability in abilities:
+			icon = ability['displayIcon']
+			slot = ability['slot']
+			if slot == 'Ultimate':
+				output.add_field(
+					name="Ability: " + ability['name'] + " (" + slot+")",
+					value=ability['description'] + "\n*"+ str(ability['cost']) + " Points*",
+					inline=False
+				)
+			elif slot == 'Passive':
+				output.add_field(
+					name="Ability: " + ability['name'] + " (" + slot+")",
+					value=ability['description'],
+					inline=False
+				)
+			elif ability['cost'] == 'null':
+				output.add_field(
+					name="Ability: " + ability['name'] + " (" + slot+")",
+					value=ability['description'] + "\n*Cost: Free*",
+					inline=False
+				)
+			else:
+				output.add_field(
+					name="Ability: " + ability['name'] + " (" + slot+")",
+					value=ability['description'] + "\n*Cost: " + str(ability['cost']) + " credits*",
+					inline=False
+				)
+		output.set_thumbnail(
+			url=image
+		)
+		await channel.send(embed=output)
+
 
 #FEEDBACK: Users will be sent a link to a feedback survey
 async def feedback(msg, channel):

@@ -1,0 +1,40 @@
+{
+	"agent": "Sage",
+	"description": "The bastion of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off forceful assaults, she provides a calm center to a hellish battlefield.",
+	"displayIcon": "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/displayicon.png",
+    "displayIconSmall": "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/displayiconsmall.png",
+	"role": {
+		"roleName": "Sentinel",
+		"description": "Sentinels are defensive experts who can lock down areas and watch flanks, both on attacker and defender rounds."
+	},
+	"abilities": [
+		{
+			"slot": "Ability 1",
+			"name": "Slow Orb",
+			"description": "EQUIP a slowing orb. FIRE to throw a slowing orb forward that detonates upon landing, creating a lingering field that slows players caught inside of it.",
+			"displayIcon": "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/abilities/ability1/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ability 2",
+			"name": "Healing Orb",
+			"description": "EQUIP a healing orb. FIRE with your crosshairs over a damaged ally to activate a heal-over-time on them. ALT FIRE while Sage is damaged to activate a self heal-over-time.",
+			"displayIcon": "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/abilities/ability2/displayicon.png",
+			"cost": null
+		},
+		{
+			"slot": "Ability 3",
+			"name": "Barrier Orb",
+			"description": "EQUIP a barrier orb. FIRE places a wall that fortifies after a few seconds. ALT FIRE rotates the targeter.",
+			"displayIcon": "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/abilities/grenade/displayicon.png",
+			"cost": 400
+		},
+		{
+			"slot": "Ultimate",
+			"name": "Resurrection",
+			"description": "EQUIP a resurrection ability. FIRE with your crosshairs placed over a dead ally to begin resurrecting them. After a brief channel, the ally will be brought back to life with full health.",
+			"displayIcon": "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/abilities/ultimate/displayicon.png",
+			"cost": 8
+		}
+	]
+}

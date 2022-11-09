@@ -1,0 +1,40 @@
+{
+	"agent": "Phoenix",
+	"description": "Hailing from the U.K., Phoenix's star power shines through in his fighting style, igniting the battlefield with flash and flare. Whether he's got backup or not, he's rushing in to fight on his own terms.",
+	"displayIcon": "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/displayicon.png",
+    "displayIconSmall": "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/displayiconsmall.png",
+	"role": {
+		"roleName": "Duelist",
+		"description": "Duelists are self-sufficient fraggers who their team expects, through abilities and skills, to get high frags and seek out engagements first."
+	},
+	"abilities": [
+		{
+			"slot": "Ability 1",
+			"name": "Blaze",
+			"description": "EQUIP a flame wall. FIRE to create a line of flame that moves forward, creating a wall of fire that blocks vision and damages players passing through it. HOLD FIRE to bend the wall in the direction of your crosshair.",
+			"displayIcon": "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/abilities/grenade/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ability 2",
+			"name": "Curveball",
+			"description": "EQUIP a flare orb that takes a curving path and detonates shortly after throwing. FIRE to curve the flare orb to the left, detonating and blinding any player who sees the orb. ALT FIRE to curve the flare orb to the right.",
+			"displayIcon": "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/abilities/ability1/displayicon.png",
+			"cost": 250
+		},
+		{
+			"slot": "Ability 3",
+			"name": "Hot Hands",
+			"description": "EQUIP a fireball. FIRE to throw a fireball that explodes after a set amount of time or upon hitting the ground, creating a lingering fire zone that damages enemies. ALT FIRE to lob.",
+			"displayIcon": "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/abilities/ability2/displayicon.png",
+			"cost": null
+		},
+		{
+			"slot": "Ultimate",
+			"name": "Run it Back",
+			"description": "INSTANTLY place a marker at Phoenix's location. While this ability is active, dying or allowing the timer to expire will end this ability and bring Phoenix back to this location with full health and the amount of armor he had when the ability was cast.",
+			"displayIcon": "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/abilities/ultimate/displayicon.png",
+			"cost": 6
+		}
+	]
+}

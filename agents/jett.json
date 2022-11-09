@@ -1,0 +1,47 @@
+{
+	"agent": "Jett",
+	"description": "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies up before they even know what hit them.",
+	"displayIcon": "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/displayicon.png",
+    "displayIconSmall": "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/displayiconsmall.png",
+	"role": {
+		"roleName": "Duelist",
+		"description": "Duelists are self-sufficient fraggers who their team expects, through abilities and skills, to get high frags and seek out engagements first."
+	},
+	"abilities": [
+		{
+			"slot": "Ability 1",
+			"name": "Updraft",
+			"description": "INSTANTLY propel Jett high into the air.",
+			"displayIcon": "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/abilities/ability1/displayicon.png",
+			"cost": 150
+		},
+		{
+			"slot": "Ability 2",
+			"name": "Tailwind",
+			"description": "ACTIVATE to prepare a gust of wind for a limited time. RE-USE the wind to propel Jett in the direction she is moving. If Jett is standing still, she propels forward.",
+			"displayIcon": "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/abilities/ability2/displayicon.png",
+			"cost": null
+		},
+		{
+			"slot": "Ability 3",
+			"name": "Cloudburst",
+			"description": "INSTANTLY throw a projectile that expands into a brief vision-blocking cloud on impact with a surface. HOLD the ability key to curve the smoke in the direction of your crosshair.",
+			"displayIcon": "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/abilities/grenade/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ultimate",
+			"name": "Blade Storm",
+			"description": "EQUIP a set of highly accurate throwing knives. FIRE to throw a single knife and recharge knives on a kill. ALTERNATE FIRE to throw all remaining daggers but does not recharge on a kill.",
+			"displayIcon": "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/abilities/ultimate/displayicon.png",
+			"cost": 7
+		},
+		{
+			"slot": "Passive",
+			"name": "Drift",
+			"description": "Holding the jump button while falling allows you to glide through the air.",
+			"displayIcon": "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/abilities/passive/displayicon.png",
+			"cost": null
+		}
+	]
+}
