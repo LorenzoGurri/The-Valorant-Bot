@@ -61,19 +61,37 @@ async def connect(msg, channel):
 	DiscordIDquery = { "Discord_id": msg.author.id }
 	if (collection.count_documents(DiscordIDquery) == 0):
 		print("msg: ", msg)
-		#msgContent = msg.content.split(" ")
-		Valusername = msg.content[13:]
+		Valusername = msg.content[13:] #Get rid of the !tvb connect part 
 		ValIDQuery =  {"Valorant_ID": Valusername}
 		if(collection.count_documents(ValIDQuery) != 0):
+			message.title = "Connection Failed"
 			message.description = 'Someone already claimed your account!!!'
 		else:
 			print("Val username: ", Valusername)
-			post = {"Discord_id": msg.author.id, "Valorant_ID": Valusername}
+			print("Discord Name: ", msg.author)
+			post = {"Discord_id": msg.author.id, "Discord_name": msg.author.name, "Valorant_ID": Valusername}
 			collection.insert_one(post)
-			message.description = 'accepted!'
+			message.title = "Connection Success!"
+			message.description = 'Discord Name: ' + msg.author.name + '\nValorant account: ' + Valusername
 	else:
-		message.description = "**ERROR**: User already in DATABASE!"
+		message.title = "Connection Failed"
+		message.description = "User already in DATABASE!"
 	await channel.send(embed=message)
+async def disconnect(msg, channel):
+	message = discord.Embed(
+		title = "Disconnect Account",
+		description = "TODO: Set up connecting account",
+		color = 0x0000FF
+	)
+	DiscordIDquery = { "Discord_id": msg.author.id }
+	if (collection.count_documents(DiscordIDquery) == 0):
+		message.title = "Disconnection Failed!"
+		message.description = 'You were never connected in the first place!'
+	else:
+		collection.delete_one(DiscordIDquery)
+		message.title = "Disconnection Success!"
+		message.description = "Deleted " + msg.author.name + " from the database!" 
+	await channel.send(embed=message) 
 
 #STATS: Users will be able to see important stats related to their Valorant Account
 async def stats(msg, channel, author):
@@ -174,7 +192,8 @@ async def on_message(message):
 		if len(msg) > 1:
 			if msg[1] == "connect":
 				await connect(message, message.channel)
-				
+			elif msg[1] == "disconnect":
+				await disconnect(message, message.channel)	
 			elif msg[1] == "stats":
 				await stats(msg, message.channel, message.author)
 			elif msg[1] == "lineups":
