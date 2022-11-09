@@ -1,0 +1,40 @@
+{
+	"agent": "KAY/O",
+	"description": "KAY/O is a machine of war built for a single purpose: neutralizing radiants. His power to suppress enemy abilities cripples his opponents' capacity to fight back, securing him and his allies the ultimate edge.",
+	"displayIcon": "https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/displayicon.png",
+    "displayIconSmall": "https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/displayiconsmall.png",
+	"role": {
+		"roleName": "Initiator",
+		"description": "Initiators challenge angles by setting up their team to enter contested ground and push defenders away."
+	},
+	"abilities": [
+		{
+			"slot": "Ability 1",
+			"name": "FRAG/ment",
+			"description": "EQUIP an explosive fragment. FIRE to throw. The fragment sticks to the floor and explodes multiple times, dealing near lethal damage at the center with each explosion.",
+			"displayIcon": "https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/abilities/grenade/displayicon.png",
+			"cost": 200
+		},
+		{
+			"slot": "Ability 2",
+			"name": "FLASH/drive",
+			"description": "EQUIP a flash grenade. FIRE to overhand throw. ALT FIRE to underhand throw a weaker version that explodes quickly. The flash grenade explodes after a short fuse, blinding anyone in line of sight.",
+			"displayIcon": "https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/abilities/ability1/displayicon.png",
+			"cost": 250
+		},
+		{
+			"slot": "Ability 3",
+			"name": "ZERO/point",
+			"description": "EQUIP a suppression blade. FIRE to throw. The blade sticks to the first surface it hits, winds up, and suppresses anyone in the radius of the explosion.",
+			"displayIcon": "https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/abilities/ability2/displayicon.png",
+			"cost": null
+		},
+		{
+			"slot": "Ultimate",
+			"name": "NULL/cmd",
+			"description": "INSTANTLY overload with polarized radianite energy that pulses from KAY/O in a massive radius. Enemies hit with pulses are suppressed for a short duration. While overloaded, KAY/O gains combat stim and can be re-stabilized if downed.",
+			"displayIcon": "https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/abilities/ultimate/displayicon.png",
+			"cost": 7
+		}
+	]
+}
