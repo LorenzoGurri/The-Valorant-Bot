@@ -11,6 +11,9 @@ import json
 import pymongo
 from pymongo import MongoClient
 
+# Class stuff
+import Agent
+
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
 # GRAB THE API TOKEN FROM THE .ENV FILE.
@@ -169,17 +172,17 @@ async def agents(msg, channel):
 			await channel.send("Invalid Agent Name")
 			return
 
-		#Start of output
-		name = data['agent']
-		role = data['role']['roleName']
+		agent = Agent.Agent(data)
+		name = agent.printName()
+		role = agent.printRole()
+		description = agent.printDescription()
+		image = agent.printImage()
+		abilities = agent.printAbilities()
+
 		output = discord.Embed(
 			title = "Agent: {} ({})".format(name,role),
 			color = discord.Color.blue()		
 		)
-
-		description = data['description']
-		image = data['displayIcon']
-		abilities = data['abilities']
 
 
 		output.add_field(
