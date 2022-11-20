@@ -261,13 +261,18 @@ async def help(msg, channel, message):
 		color = 0xFF5733
 	)
 	msg.add_field(
-		name = "Connect",
-		value = "!tvb connect", 
+		name = "Connect (complete)",
+		value = "!tvb connect [username#TAG]", 
+		inline = False
+		)
+	msg.add_field(
+		name = "Disconnect (complete)",
+		value = "!tvb disconnect", 
 		inline = False
 		)
 	msg.add_field(
 		name = "Stats (complete)", 
-		value = "!tvb stats [region] [Username#Tag]",
+		value = "!tvb stats [region] [username#TAG]",
 		inline = False
 		)
 	msg.add_field(
