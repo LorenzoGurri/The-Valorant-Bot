@@ -32,6 +32,9 @@ class Player():
     return self.headshotPercent
 
   def parseStats(self, data):
+    if len(data) < 1:
+      return
+    
     tmpKD = 0.0
     tmpACS = 0
     headshots = 0

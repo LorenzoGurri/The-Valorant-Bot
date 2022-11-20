@@ -33,7 +33,6 @@ if(CONNECTION_URL == "knf"):
 cluster = MongoClient(CONNECTION_URL)
 
 db = cluster["ValorantBot"]
-
 collection = db["Player"]
 
 command = "!tbv"
@@ -103,12 +102,23 @@ async def disconnect(msg, channel):
 #STATS: Users will be able to see important stats related to their Valorant Account
 async def stats(msg, channel, author):
 	#Error checking
-	if len(msg) != 4:
-		await channel.send("**USAGE**: !tvb stats [ap,br,eu,kr,latam,na] [username#TAG]")
+	if len(msg) != 3 and len(msg) != 4:
+		await channel.send("**USAGE**: \n!tvb stats [ap,br,eu,kr,latam,na] [username-with-no-spaces#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]")
 		return
 
 	region = msg[2]
-	username = msg[3].split("#")
+	if len(msg) == 3:
+		DiscordIDquery = { "Discord_id": author.id }
+		user = collection.find_one(DiscordIDquery)
+		if user != None:
+			username = user['Valorant_ID'].replace(" ", "").split("#")
+			print(username)
+		else:
+			await channel.send("**ERROR**: {} not in database\nUse !tvb connect [username#TAG]".format(author))
+			return
+	else:
+		username = msg[3].split("#")
+
 	#Error checking
 	if len(username) != 2:
 		await channel.send("**ERROR**: Incorrect username#TAG format")
@@ -157,7 +167,7 @@ async def stats(msg, channel, author):
 	)
 	output.add_field(
 		name="Headshot %",
-		value= "{:.2f}%".format(player.getHeadshot()),
+		value= "{:.1f}%".format(player.getHeadshot()),
 		inline=True
 	)
 
