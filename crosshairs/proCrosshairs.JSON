@@ -1,0 +1,38 @@
+{
+    "Teams": "Sentinels",
+    "Players": [
+        {
+            "name": "TenZ",
+            "code": "0;s;1;P;c;5;h;0;m;1;0l;4;0o;2;0a;1;0f;0;1b;0;S;c;4;o;1",
+            "image": ""
+        },
+        {
+            "name": "zekken",
+            "code": "0;s;1;P;u;FF7F7FFF;h;0;0l;4;0o;0;0a;1;0f;0;1b;0",
+            "image": ""
+        },
+        {
+            "name": "Sacy",
+            "code": "0;P;h;0;f;0;0t;1;0l;4;0o;1;0a;1;0f;0;1t;3;1o;2;1a;1;1m;0;1f;0",
+            "image": ""
+        },
+        {
+            "name": "pANcada",
+            "code": "0;P;c;1;h;0;s;0;0l;3;0o;2;0a;1;0f;0;1b;0",
+            "image": ""
+        },
+        {
+            "name": "dephh",
+            "code": "0;P;o;1;f;0;0l;4;0a;1;0f;0;1b;0",
+            "image": ""
+        },
+        {
+            "name": "SicK",
+            "code": "0;P;c;1;o;1;f;0;0l;3;0o;5;0a;1;0f;0;1t;0;1a;0.379",
+            "image": ""
+        }
+
+    ]
+}
+
+

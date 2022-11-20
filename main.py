@@ -232,7 +232,7 @@ async def feedback(msg, channel):
 async def crosshairs(msg, channel):
 	msg = discord.Embed(
 		title = "Crosshairs",
-		description = "Work in Progress",
+		description = "WE are working Here",
 		color = 0x0000FF
 	)
 	view = View()
@@ -240,9 +240,10 @@ async def crosshairs(msg, channel):
 		style = discord.ButtonStyle.primary 
 		)
 	funnyButton = Button(label = "Funny Crosshairs", 
-		style = discord.ButtonStyle.secondary
+		style = discord.ButtonStyle.primary
 		)
 	probutton.callback = proButtonClick
+	funnyButton.callback = funButtonClick
 
 	view.add_item(probutton)
 	view.add_item(funnyButton)
@@ -251,6 +252,11 @@ async def crosshairs(msg, channel):
 async def proButtonClick(interaction):
 	C9Button = Button(label = "C9 Crosshairs")
 	await interaction.response.send_message("You're not good enough for Pro Crosshairs")
+
+async def funButtonClick(interaction):
+	funButt = Button(label = "Fun hairs")
+	await interaction.response.send_message("You are throwing my mmr.")
+
 
 #HELP: Users will be able top see what commands we offer
 async def help(msg, channel, message):
