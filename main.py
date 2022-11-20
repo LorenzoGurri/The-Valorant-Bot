@@ -13,6 +13,7 @@ from pymongo import MongoClient
 
 # Class stuff
 import Agent
+import Player
 
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
@@ -62,7 +63,6 @@ async def connect(msg, channel):
 		description = "TODO: Set up connecting account",
 		color = 0x0000FF
 	)
-	#sample program of adding to the the database
 	DiscordIDquery = { "Discord_id": msg.author.id }
 	if (collection.count_documents(DiscordIDquery) == 0):
 		print("msg: ", msg)
@@ -82,6 +82,8 @@ async def connect(msg, channel):
 		message.title = "Connection Failed"
 		message.description = "User already in DATABASE!"
 	await channel.send(embed=message)
+
+#DISCONNECT: Users can disconnect a Valorant account from their Discord account
 async def disconnect(msg, channel):
 	message = discord.Embed(
 		title = "Disconnect Account",
@@ -104,38 +106,63 @@ async def stats(msg, channel, author):
 	if len(msg) != 4:
 		await channel.send("**USAGE**: !tvb stats [ap,br,eu,kr,latam,na] [username#TAG]")
 		return
-	else:
-		region = msg[2]
-		username = msg[3].split("#")
-		#Error checking
-		if len(username) != 2:
-			await channel.send("**ERROR**: Incorrect username#TAG format")
-			return
-		response = requests.get(api_link + "v1/mmr/{}/{}/{}".format(region, username[0], username[1]))
-		#Error checking
-		if response.status_code != 200:
-			#I'm thinking we can add a function to handle error codes to print them out nicely
-			await channel.send("**ERROR**: Error with API response\nStatus Code: {}".format(response.status_code))
-			return
 
-		#Start of output
-		output = discord.Embed(
-			title = "{}'s Statistics".format(username[0]),
-			color = discord.Color.blue()		
-		)
-		user = response.json()['data']
-		rank = user['currenttierpatched']
-		image = user['images']['small']
-		rr = user['ranking_in_tier']
-		output.add_field(
-			name=rank,
-			value="{}/100".format(rr)
-		)
-		output.set_thumbnail (
-			url=image
-		)
+	region = msg[2]
+	username = msg[3].split("#")
+	#Error checking
+	if len(username) != 2:
+		await channel.send("**ERROR**: Incorrect username#TAG format")
+		return
 
-		await channel.send(embed=output)
+	#API call for basic user info
+	response = requests.get(api_link + "v1/mmr/{}/{}/{}".format(region, username[0], username[1]))
+	#Error checking
+	if response.status_code != 200:
+		await channel.send("**ERROR**: Error with API response\nStatus Code: {}".format(response.status_code))
+		return
+	player = Player.Player(response.json()['data'])
+
+	#API call for matches
+	response = requests.get(api_link + "v3/matches/{}/{}/{}?filter=competitive".format(region, player.getUsername(), player.getTag()))
+	#Error checking
+	if response.status_code != 200:
+		await channel.send("**ERROR**: Error with API response\nStatus Code: {}".format(response.status_code))
+		return
+	player.parseStats(response.json()['data'])
+
+	#Start of output
+	output = discord.Embed(
+		title = "{}'s Statistics".format(username[0]),
+		color = discord.Color.blue()		
+	)
+	output.set_thumbnail (
+		url=player.getImage()
+	)
+	#Rank and RR
+	output.add_field(
+		name=player.getRank(),
+		value="{}/100".format(player.getRR()),
+		inline=False
+	)
+	#Last 5 Games
+	output.add_field(
+		name="K/D",
+		value= "{:.2f}".format(player.getKD()),
+		inline=True
+	)
+	output.add_field(
+		name="Average Score",
+		value= "{:.2f}".format(player.getACS()),
+		inline=True
+	)
+	output.add_field(
+		name="Headshot %",
+		value= "{:.2f}%".format(player.getHeadshot()),
+		inline=True
+	)
+
+
+	await channel.send(embed=output)
 
 #LINEUPS: Users will be able to search for useful lineups
 async def lineups(msg, channel):
@@ -310,7 +337,6 @@ async def on_message(message):
 	# Make sure it doesn't respond to itself in it's own response
 	if message.author == bot.user:
 		return
-    
 
 	# Queue for the bot to listen
 	if message.content.startswith("!tvb"):
@@ -342,19 +368,19 @@ async def on_message(message):
 		
 
 	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
-	if message.content == "hello":
-		# SENDS BACK A MESSAGE TO THE CHANNEL.
-		print("In hello")
-		await message.channel.send("hey dirtbag")
-	elif message.content.startswith("I'm"):
-		msg = message.content.split()[1]
-		await message.channel.send("Hi " + msg + ", I'm dad!")
-	elif message.content == "!tvb Sova Ascent B":
-		await message.channel.send(file=discord.File('lineups/sova_ascent_b.gif'))
-	print("hello")
-	print("message contnet: ")
-	print(message.content)
-	print(f"{message.channel}: {message.author}: {message.author.name}: {message.content}")
+	# if message.content == "hello":
+	# 	# SENDS BACK A MESSAGE TO THE CHANNEL.
+	# 	print("In hello")
+	# 	await message.channel.send("hey dirtbag")
+	# elif message.content.startswith("I'm"):
+	# 	msg = message.content.split()[1]
+	# 	await message.channel.send("Hi " + msg + ", I'm dad!")
+	# elif message.content == "!tvb Sova Ascent B":
+	# 	await message.channel.send(file=discord.File('lineups/sova_ascent_b.gif'))
+	# print("hello")
+	# print("message contnet: ")
+	# print(message.content)
+	# print(f"{message.channel}: {message.author}: {message.author.name}: {message.content}")
 	
 # EXECUTES THE BOT WITH THE SPECIFIED TOKEN. TOKEN HAS BEEN REMOVED AND USED JUST AS AN EXAMPLE.
 bot.run(DISCORD_TOKEN)
