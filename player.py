@@ -39,10 +39,11 @@ class Player():
     
     #Loop through matches and grab relevant data
     for match in data:
+      roundsPlayed = match['metadata']['rounds_played']
       for player in match['players']['all_players']:
         if player['name'] == self.username and player['tag'] == self.tag:
           tmpKD += player['stats']['kills'] / player['stats']['deaths']
-          tmpACS += player['stats']['score']
+          tmpACS += player['stats']['score'] / roundsPlayed
           headshots += player['stats']['headshots']
           totalHits += player['stats']['headshots']+player['stats']['bodyshots']+player['stats']['legshots']
 

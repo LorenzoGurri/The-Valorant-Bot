@@ -151,8 +151,8 @@ async def stats(msg, channel, author):
 		inline=True
 	)
 	output.add_field(
-		name="Average Score",
-		value= "{:.2f}".format(player.getACS()),
+		name="ACS",
+		value= "{:.0f}".format(player.getACS()),
 		inline=True
 	)
 	output.add_field(
