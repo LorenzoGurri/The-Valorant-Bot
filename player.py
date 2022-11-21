@@ -1,7 +1,8 @@
 import json
 
+#class for the stats
 class Player():
-  def __init__(self, data):
+  def __init__(self, data): 
     self.username = data['name']
     self.tag = data['tag']
     self.rank = data['currenttierpatched']
