@@ -11,6 +11,8 @@ import json
 import pymongo
 from pymongo import MongoClient
 
+# MyButton Class 
+import MyButton
 # Class stuff
 import Agent
 import Player
@@ -270,27 +272,29 @@ async def feedback(msg, channel):
 
 #CROSSHAIRS: Users will be able to search through various crosshairs
 async def crosshairs(msg, channel):
-	msg = discord.Embed(
-		title = "Crosshairs",
-		description = "Work in Progress",
-		color = 0x0000FF
-	)
-	view = View()
-	probutton = Button(label = "PRO Buttons",
-		style = discord.ButtonStyle.primary 
-		)
-	funnyButton = Button(label = "Funny Crosshairs", 
-		style = discord.ButtonStyle.secondary
-		)
-	probutton.callback = proButtonClick
+	if len(msg) != 3:
+		await channel.send("**USAGE**: !tvb crosshairs [pro / fun]")
+		return
+	else:
+		view = View()
+		typing = msg[2]
+		if (typing.lower() == "pro"):
+			path = "crosshairs/proCrosshairs.json"
+			
+			with open(path, "r") as f:
+				data = json.load(f)
 
-	view.add_item(probutton)
-	view.add_item(funnyButton)
-	await channel.send(embed=msg, view = view)
+			allTheTeams = list()
+			for team_dict in data["Teams"]:
+				allTheTeams.append(team_dict)
+				
+				teamButton = MyButton.MyButton(team_dict["name"], team_dict["Players"])
+				view.add_item(teamButton)
 
-async def proButtonClick(interaction):
-	C9Button = Button(label = "C9 Crosshairs")
-	await interaction.response.send_message("You're not good enough for Pro Crosshairs")
+			await channel.send("Professional Valorant Teams", view = view)
+
+		elif (typing.lower().startswith("fun")):
+			await channel.send("Work in progess")
 
 #HELP: Users will be able top see what commands we offer
 async def help(msg, channel, message):
