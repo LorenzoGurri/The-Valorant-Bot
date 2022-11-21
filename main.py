@@ -184,15 +184,15 @@ async def stats(msg, channel, author):
 async def lineups(msg, channel):
 
 	if len(msg) != 7 :
-		await channel.send("Format is !tvb lineups <MAP> <SITE> <ATTACK?> <START> <AGENT> \n input 0 if a argument doesnt matter.")
+		await channel.send("**USAGE**: !tvb lineups <MAP> <SITE> <ATTACK?> <START> <AGENT> ")
 		return
 	Map = msg[2].lower()
 	Site = msg[3].lower()
 	Type =  msg[4].lower()
 	Start = msg[5].lower()
 	Agent = msg[6].lower()
-	print("Map:", Map, "Site:", Site, "Type:", Type, "Start:", Start, "Agent:", Agent)
-	DiscordIDquery = {"Map": Map, "Site": Site, "Type": Type, "Agent": Agent}
+	print("Map:", Map, "Site:", Site, "Type:", Type, "Start:", Start,  "Agent:", Agent)
+	DiscordIDquery = {"Map": Map, "Site": Site, "Type": Type, "Start:": Start, "Agent": Agent}
 	lineups = lineupsCollection.find_one(DiscordIDquery)
 	if lineups != None:
 		await channel.send(lineups["Video"])
