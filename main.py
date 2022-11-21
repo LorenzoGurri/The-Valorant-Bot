@@ -192,7 +192,7 @@ async def lineups(msg, channel):
 	Start = msg[5].lower()
 	Agent = msg[6].lower()
 	print("Map:", Map, "Site:", Site, "Type:", Type, "Start:", Start,  "Agent:", Agent)
-	DiscordIDquery = {"Map": Map, "Site": Site, "Type": Type, "Start:": Start, "Agent": Agent}
+	DiscordIDquery = {"Map": Map, "Site": Site, "Type": Type, "Start": Start, "Agent": Agent}
 	lineups = lineupsCollection.find_one(DiscordIDquery)
 	if lineups != None:
 		await channel.send(lineups["Video"])
