@@ -184,7 +184,7 @@ async def stats(msg, channel, author):
 async def lineups(msg, channel):
 
 	if len(msg) != 7 :
-		await channel.send("**USAGE**: !tvb lineups <MAP> <SITE> <ATTACK?> <START> <AGENT> ")
+		await channel.send("**USAGE**: !tvb lineups [map] [site] [attack / defense] [start] [agents] ")
 		return
 	Map = msg[2].lower()
 	Site = msg[3].lower()
