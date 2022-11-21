@@ -230,32 +230,59 @@ async def feedback(msg, channel):
 
 #CROSSHAIRS: Users will be able to search through various crosshairs
 async def crosshairs(msg, channel):
-	msg = discord.Embed(
-		title = "Crosshairs",
-		description = "WE are working Here",
-		color = 0x0000FF
-	)
-	view = View()
-	probutton = Button(label = "PRO Buttons",
-		style = discord.ButtonStyle.primary 
-		)
-	funnyButton = Button(label = "Funny Crosshairs", 
-		style = discord.ButtonStyle.primary
-		)
-	probutton.callback = proButtonClick
-	funnyButton.callback = funButtonClick
+	if len(msg) != 3:
+		await channel.send("**USAGE**: !tvb crosshairs [pro / fun]")
+		return
+	else:
+		view = View()
+		typing = msg[2]
+		if (typing.lower() == "pro"):
+			path = "crosshairs/proCrosshairs.json"
+			
+			with open(path, "r") as f:
+				data = json.load(f)
 
-	view.add_item(probutton)
-	view.add_item(funnyButton)
-	await channel.send(embed=msg, view = view)
+			# await channel.send("WORKED")
+			allTheTeams = list()
+			for team in data["Teams"]:
+				allTheTeams.append(team["name"])
+
+			for i in allTheTeams:
+				teamButton = Button(label = i, style = discord.ButtonStyle.primary)
+				teamButton.callback = proButtonClick
+				view.add_item(teamButton)
+
+			await channel.send("IM SO CONFUSED", view = view)
+
+		elif (typing.lower().startswith("fun")):
+			await channel.send("loser")
+
+	# msg = discord.Embed(
+	# 	title = "Crosshairs",
+	# 	description = "WE are working Here",
+	# 	color = 0x0000FF
+	# )
+	# view = View()
+	# probutton = Button(label = "PRO Buttons",
+	# 	style = discord.ButtonStyle.primary 
+	# 	)
+	# funnyButton = Button(label = "Funny Crosshairs", 
+	# 	style = discord.ButtonStyle.primary
+	# 	)
+	# probutton.callback = proButtonClick
+	# funnyButton.callback = funButtonClick
+
+	# view.add_item(probutton)
+	# view.add_item(funnyButton)
+	# await channel.send(embed=msg, view = view)
 
 async def proButtonClick(interaction):
-	C9Button = Button(label = "C9 Crosshairs")
-	await interaction.response.send_message("You're not good enough for Pro Crosshairs")
 
-async def funButtonClick(interaction):
-	funButt = Button(label = "Fun hairs")
-	await interaction.response.send_message("You are throwing my mmr.")
+	await interaction.response.send_message(data)
+
+# async def funButtonClick(interaction):
+# 	funButt = Button(label = "Fun hairs")
+# 	await interaction.response.send_message("You are throwing my mmr.")
 
 
 #HELP: Users will be able top see what commands we offer
