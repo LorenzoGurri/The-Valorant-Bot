@@ -13,7 +13,7 @@ from pymongo import MongoClient
 
 # Class stuff
 import Agent
-import Player
+import player
 
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
@@ -34,7 +34,7 @@ cluster = MongoClient(CONNECTION_URL)
 
 db = cluster["ValorantBot"]
 collection = db["Player"]
-
+lineupsCollection = db["Lineups"]
 command = "!tbv"
 api_link = "https://api.henrikdev.xyz/valorant/"
 
@@ -176,12 +176,25 @@ async def stats(msg, channel, author):
 
 #LINEUPS: Users will be able to search for useful lineups
 async def lineups(msg, channel):
-	msg = discord.Embed(
-		title = "Lineups",
-		description = "TODO: Set up lineup command",
-		color = 0x0000FF
-	)
-	await channel.send(embed=msg)
+
+	if len(msg) != 7 :
+		await channel.send("Format is !tvb lineups <MAP> <SITE> <ATTACK?> <START> <AGENT> \n input 0 if a argument doesnt matter.")
+		return
+	Map = msg[2].lower()
+	Site = msg[3].lower()
+	Type =  msg[4].lower()
+	Start = msg[5].lower()
+	Agent = msg[6].lower()
+	print("Map:", Map, "Site:", Site, "Type:", Type, "Start:", Start, "Agent:", Agent)
+	DiscordIDquery = {"Map": Map, "Site": Site, "Type": Type, "Agent": Agent}
+	lineups = lineupsCollection.find_one(DiscordIDquery)
+	if lineups != None:
+		await channel.send(lineups["Video"])
+	else:
+		print("Failed:(")
+		await channel.send("**ERROR**: no lineups for those requirements!!!")
+	return
+	#await channel.send(embed=msg)
 
 #AGENTS: Users will be able to see useful information about Agents
 async def agents(msg, channel):
