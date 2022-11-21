@@ -6,40 +6,89 @@
             {
                "name": "TenZ",
                "code": "0;s;1;P;c;5;h;0;m;1;0l;4;0o;2;0a;1;0f;0;1b;0;S;c;4;o;1",
-               "image":""
+               "image": "<:tenz:1044293474071097504>"
             },
             {
                "name": "zekken",
                "code": "0;s;1;P;u;FF7F7FFF;h;0;0l;4;0o;0;0a;1;0f;0;1b;0",
-               "image": ""
+               "image": "<:zekken:1044293474624749580>"
             },
             {
                "name": "Sacy",
                "code": "0;P;h;0;f;0;0t;1;0l;4;0o;1;0a;1;0f;0;1t;3;1o;2;1a;1;1m;0;1f;0",
-               "image": ""
+               "image": "<:sacy:1044293471579680860>"
             },
             {
                "name": "pANcada",
                "code": "0;P;c;1;h;0;s;0;0l;3;0o;2;0a;1;0f;0;1b;0",
-               "image": ""
+               "image": "<:pancada:1044293470870843494>"
             },
             {
                "name": "dephh",
                "code": "0;P;o;1;f;0;0l;4;0a;1;0f;0;1b;0",
-               "image": ""
-            },
-            {
-               "name": "SicK",
-               "code": "0;P;c;1;o;1;f;0;0l;3;0o;5;0a;1;0f;0;1t;0;1a;0.379",
-               "image": ""
+               "image": "<:dephh:1044293469776125965>"
             }
          ]
       },
       {
-         "name": "C9 White"
+         "name": "C9 White",
+         "Players": [
+            {
+               "name": "alexis",
+               "code": "0;s;1;P;c;7;o;1;d;1;0b;0;1b;0;S;c;5;s;0.64;o;1",
+               "image": "<:alexis:1044309084322676816>"
+            },
+            {
+               "name": "Jazzyk1ns",
+               "code": "0;s;1;P;h;0;f;0;0t;1;0l;4;0o;0;0a;1;0f;0;1b;0;S;c;1;s;0.884;o;1",
+               "image": "<:jazzy:1044309086625345656"
+            },
+            {
+               "name": "katsumi",
+               "code": "0;c;1;P;u;FF6B6BFF;o;1;0b;0;1t;1;1l;3;1v;3;1o;0;1a;1;1m;0;1f;0",
+               "image": "<:kat:1044309087585833040>"
+            },
+            {
+               "name": "meL",
+               "code": "0;p;0;s;1;P;h;0;0l;4;0o;0;0a;1;0f;0;1b;0;A;o;1;d;1;0b;0;1b;0",
+               "image": "<:mel:1044309088479219743>"
+            },
+            {
+               "name": "Bob",
+               "code": "0;s;1;P;h;0;f;0;0l;5;0o;0;0a;1;0f;0;1b;0;S;o;1",
+               "image": "<:bob:1044309085778083860>"
+            }
+         ]
       },
       {
-         "name": "C9 Blue"
+         "name": "DRX",
+         "Players": [
+            {
+               "name": "BuZz",
+               "code": "0;P;c;5;o;1;f;0;0t;1;0l;2;0o;2;0a;1;0f;0;1b;0",
+               "image": "<:buzz:1044305554585165845>"
+            },
+            {
+               "name": "MaKo",
+               "code": "0;s;1;P;c;1;o;1;f;0;0l;4;0a;1;0f;0;1b;0",
+               "image": "<:mako:1044305555558244372>"
+            },
+            {
+               "name": "stax",
+               "code": "0;P;c;4;h;0;f;0;s;0;0l;4;0o;2;0a;1;0f;0;1b;0",
+               "image": "<:stax:1044305557122711707>"
+            },
+            {
+               "name": "Rb",
+               "code": "0;s;1;P;c;5;h;0;f;0;0l;4;0o;2;0a;1;0f;0;1b;0;S;o;1",
+               "image": "<:rb:1044305556434849822"
+            },
+            {
+               "name": "Zest",
+               "code": "0;s;1;P;c;1;o;1;f;0;0l;4;0a;1;0f;0;1b;0",
+               "image": "<:zest:1044305553767272498>"
+            }
+         ]
       }
    ]
 }

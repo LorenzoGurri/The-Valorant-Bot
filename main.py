@@ -11,6 +11,9 @@ import json
 import pymongo
 from pymongo import MongoClient
 
+# MyButton Class 
+import MyButton
+
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
 # GRAB THE API TOKEN FROM THE .ENV FILE.
@@ -242,48 +245,17 @@ async def crosshairs(msg, channel):
 			with open(path, "r") as f:
 				data = json.load(f)
 
-			# await channel.send("WORKED")
 			allTheTeams = list()
-			for team in data["Teams"]:
-				allTheTeams.append(team["name"])
-
-			for i in allTheTeams:
-				teamButton = Button(label = i, style = discord.ButtonStyle.primary)
-				teamButton.callback = proButtonClick
+			for team_dict in data["Teams"]:
+				allTheTeams.append(team_dict)
+				
+				teamButton = MyButton.MyButton(team_dict["name"], team_dict["Players"])
 				view.add_item(teamButton)
 
-			await channel.send("IM SO CONFUSED", view = view)
+			await channel.send("Professional Valorant Teams", view = view)
 
 		elif (typing.lower().startswith("fun")):
-			await channel.send("loser")
-
-	# msg = discord.Embed(
-	# 	title = "Crosshairs",
-	# 	description = "WE are working Here",
-	# 	color = 0x0000FF
-	# )
-	# view = View()
-	# probutton = Button(label = "PRO Buttons",
-	# 	style = discord.ButtonStyle.primary 
-	# 	)
-	# funnyButton = Button(label = "Funny Crosshairs", 
-	# 	style = discord.ButtonStyle.primary
-	# 	)
-	# probutton.callback = proButtonClick
-	# funnyButton.callback = funButtonClick
-
-	# view.add_item(probutton)
-	# view.add_item(funnyButton)
-	# await channel.send(embed=msg, view = view)
-
-async def proButtonClick(interaction):
-
-	await interaction.response.send_message(data)
-
-# async def funButtonClick(interaction):
-# 	funButt = Button(label = "Fun hairs")
-# 	await interaction.response.send_message("You are throwing my mmr.")
-
+			await channel.send("Work in progess")
 
 #HELP: Users will be able top see what commands we offer
 async def help(msg, channel, message):
