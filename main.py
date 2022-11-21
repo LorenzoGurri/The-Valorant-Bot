@@ -13,7 +13,7 @@ from pymongo import MongoClient
 
 # Class stuff
 import Agent
-import player
+import Player
 
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
