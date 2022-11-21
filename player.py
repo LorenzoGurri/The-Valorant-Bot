@@ -34,12 +34,10 @@ class Player():
   def parseStats(self, data):
     if len(data) < 1:
       return
-    
     tmpKD = 0.0
     tmpACS = 0
     headshots = 0
     totalHits = 0
-    
     #Loop through matches and grab relevant data
     for match in data:
       roundsPlayed = match['metadata']['rounds_played']
@@ -49,7 +47,6 @@ class Player():
           tmpACS += player['stats']['score'] / roundsPlayed
           headshots += player['stats']['headshots']
           totalHits += player['stats']['headshots']+player['stats']['bodyshots']+player['stats']['legshots']
-
     #Store Stats
     self.kd = tmpKD / len(data)
     self.acs = tmpACS / len(data)

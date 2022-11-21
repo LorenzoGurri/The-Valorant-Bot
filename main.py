@@ -104,8 +104,8 @@ async def disconnect(msg, channel):
 #STATS: Users will be able to see important stats related to their Valorant Account
 async def stats(msg, channel, author):
 	#Error checking
-	if len(msg) != 3 and len(msg) != 4:
-		await channel.send("**USAGE**: \n!tvb stats [ap,br,eu,kr,latam,na] [username-with-no-spaces#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]")
+	if len(msg) < 3:
+		await channel.send("**USAGE**: \n!tvb stats [ap,br,eu,kr,latam,na] [username#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]")
 		return
 
 	region = msg[2]
@@ -114,12 +114,11 @@ async def stats(msg, channel, author):
 		user = collection.find_one(DiscordIDquery)
 		if user != None:
 			username = user['Valorant_ID'].replace(" ", "").split("#")
-			print(username)
 		else:
 			await channel.send("**ERROR**: {} not in database\nUse !tvb connect [username#TAG]".format(author))
 			return
 	else:
-		username = msg[3].split("#")
+		username = ''.join(msg[3:]).split("#")
 
 	#Error checking
 	if len(username) != 2:
@@ -154,6 +153,11 @@ async def stats(msg, channel, author):
 	output.add_field(
 		name=player.getRank(),
 		value="{}/100".format(player.getRR()),
+		inline=True
+	)
+	output.add_field(
+		name="RR Change",
+		value="{}".format(player.getRRChange()),
 		inline=False
 	)
 	#Last 5 Games
@@ -316,7 +320,7 @@ async def help(msg, channel, message):
 		)
 	msg.add_field(
 		name = "Stats (complete)", 
-		value = "!tvb stats [region] [username#TAG]",
+		value = "!tvb stats [region] [username#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]",
 		inline = False
 		)
 	msg.add_field(
