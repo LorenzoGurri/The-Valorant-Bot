@@ -15,7 +15,7 @@ from pymongo import MongoClient
 import MyButton
 # Class stuff
 import Agent
-import Player
+import player
 
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
@@ -311,7 +311,17 @@ async def crosshairs(msg, channel):
 			await channel.send("Professional Valorant Teams", view = view)
 
 		elif (typing.lower().startswith("fun")):
-			await channel.send("Work in progess")
+			path = "crosshairs/funCrosshairs.json"
+
+			with open(path, "r") as f:
+				data = json.load(f)
+
+			for xhair in data["Crosshairs"]:
+				# Using the player button from the pros to show these
+				funHair = MyButton.PlayerButton(xhair["name"], xhair["code"], xhair["image"])
+				view.add_item(funHair)
+			
+			await channel.send("Funny Crosshairs", view = view)
 
 #HELP: Users will be able top see what commands we offer
 async def help(msg, channel, message):
