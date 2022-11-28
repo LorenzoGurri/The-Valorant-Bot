@@ -11,6 +11,8 @@ import json
 import pymongo
 from pymongo import MongoClient
 
+# MyButton Class 
+import MyButton
 # Class stuff
 import Agent
 import Player
@@ -34,7 +36,7 @@ cluster = MongoClient(CONNECTION_URL)
 
 db = cluster["ValorantBot"]
 collection = db["Player"]
-
+lineupsCollection = db["Lineups"]
 command = "!tbv"
 api_link = "https://api.henrikdev.xyz/valorant/"
 
@@ -102,8 +104,8 @@ async def disconnect(msg, channel):
 #STATS: Users will be able to see important stats related to their Valorant Account
 async def stats(msg, channel, author):
 	#Error checking
-	if len(msg) != 3 and len(msg) != 4:
-		await channel.send("**USAGE**: \n!tvb stats [ap,br,eu,kr,latam,na] [username-with-no-spaces#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]")
+	if len(msg) < 3:
+		await channel.send("**USAGE**: \n!tvb stats [ap,br,eu,kr,latam,na] [username#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]")
 		return
 
 	region = msg[2]
@@ -112,12 +114,11 @@ async def stats(msg, channel, author):
 		user = collection.find_one(DiscordIDquery)
 		if user != None:
 			username = user['Valorant_ID'].replace(" ", "").split("#")
-			print(username)
 		else:
 			await channel.send("**ERROR**: {} not in database\nUse !tvb connect [username#TAG]".format(author))
 			return
 	else:
-		username = msg[3].split("#")
+		username = ''.join(msg[3:]).split("#")
 
 	#Error checking
 	if len(username) != 2:
@@ -152,6 +153,11 @@ async def stats(msg, channel, author):
 	output.add_field(
 		name=player.getRank(),
 		value="{}/100".format(player.getRR()),
+		inline=True
+	)
+	output.add_field(
+		name="RR Change",
+		value="{}".format(player.getRRChange()),
 		inline=False
 	)
 	#Last 5 Games
@@ -176,12 +182,25 @@ async def stats(msg, channel, author):
 
 #LINEUPS: Users will be able to search for useful lineups
 async def lineups(msg, channel):
-	msg = discord.Embed(
-		title = "Lineups",
-		description = "TODO: Set up lineup command",
-		color = 0x0000FF
-	)
-	await channel.send(embed=msg)
+
+	if len(msg) != 7 :
+		await channel.send("**USAGE**: !tvb lineups [map] [site] [attack / defense] [start] [agents] ")
+		return
+	Map = msg[2].lower()
+	Site = msg[3].lower()
+	Type =  msg[4].lower()
+	Start = msg[5].lower()
+	Agent = msg[6].lower()
+	print("Map:", Map, "Site:", Site, "Type:", Type, "Start:", Start,  "Agent:", Agent)
+	DiscordIDquery = {"Map": Map, "Site": Site, "Type": Type, "Start": Start, "Agent": Agent}
+	lineups = lineupsCollection.find_one(DiscordIDquery)
+	if lineups != None:
+		await channel.send(lineups["Video"])
+	else:
+		print("Failed:(")
+		await channel.send("**ERROR**: no lineups for those requirements!!!")
+	return
+	#await channel.send(embed=msg)
 
 #AGENTS: Users will be able to see useful information about Agents
 async def agents(msg, channel):
@@ -270,27 +289,29 @@ async def feedback(msg, channel):
 
 #CROSSHAIRS: Users will be able to search through various crosshairs
 async def crosshairs(msg, channel):
-	msg = discord.Embed(
-		title = "Crosshairs",
-		description = "Work in Progress",
-		color = 0x0000FF
-	)
-	view = View()
-	probutton = Button(label = "PRO Buttons",
-		style = discord.ButtonStyle.primary 
-		)
-	funnyButton = Button(label = "Funny Crosshairs", 
-		style = discord.ButtonStyle.secondary
-		)
-	probutton.callback = proButtonClick
+	if len(msg) != 3:
+		await channel.send("**USAGE**: !tvb crosshairs [pro / fun]")
+		return
+	else:
+		view = View()
+		typing = msg[2]
+		if (typing.lower() == "pro"):
+			path = "crosshairs/proCrosshairs.json"
+			
+			with open(path, "r") as f:
+				data = json.load(f)
 
-	view.add_item(probutton)
-	view.add_item(funnyButton)
-	await channel.send(embed=msg, view = view)
+			allTheTeams = list()
+			for team_dict in data["Teams"]:
+				allTheTeams.append(team_dict)
+				
+				teamButton = MyButton.MyButton(team_dict["name"], team_dict["Players"])
+				view.add_item(teamButton)
 
-async def proButtonClick(interaction):
-	C9Button = Button(label = "C9 Crosshairs")
-	await interaction.response.send_message("You're not good enough for Pro Crosshairs")
+			await channel.send("Professional Valorant Teams", view = view)
+
+		elif (typing.lower().startswith("fun")):
+			await channel.send("Work in progess")
 
 #HELP: Users will be able top see what commands we offer
 async def help(msg, channel, message):
@@ -312,7 +333,7 @@ async def help(msg, channel, message):
 		)
 	msg.add_field(
 		name = "Stats (complete)", 
-		value = "!tvb stats [region] [username#TAG]",
+		value = "!tvb stats [region] [username#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]",
 		inline = False
 		)
 	msg.add_field(
