@@ -332,17 +332,17 @@ async def help(msg, channel, message):
 		color = 0xFF5733
 	)
 	msg.add_field(
-		name = "Connect (complete)",
+		name = "Connect",
 		value = "!tvb connect [username#TAG]", 
 		inline = False
 		)
 	msg.add_field(
-		name = "Disconnect (complete)",
+		name = "Disconnect",
 		value = "!tvb disconnect", 
 		inline = False
 		)
 	msg.add_field(
-		name = "Stats (complete)", 
+		name = "Stats", 
 		value = "!tvb stats [region] [username#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]",
 		inline = False
 		)
@@ -357,12 +357,12 @@ async def help(msg, channel, message):
 		inline = False
 		)
 	msg.add_field(
-		name = "Feedback (complete)",
+		name = "Feedback",
 		value = "!tvb feedback",
 		inline = False
 		)
 	msg.add_field(
-		name = "Help (complete)",
+		name = "Help",
 		value = "You already used this command to see this??? \n but ... !tvb help", 
 		inline = False
 		)
@@ -404,8 +404,8 @@ async def on_message(message):
 		else:
 			await message.channel.send("**USAGE**: !tvb [command]")
 	# Sends Webex Link for are Wednesday Meetings 
-	elif message.content.startswith("Meeting") or message.content.startswith("meet"):
-		await message.channel.send("https://rensselaer.webex.com/meet/toftl")
+	# elif message.content.startswith("Meeting") or message.content.startswith("meet"):
+	# 	await message.channel.send("https://rensselaer.webex.com/meet/toftl")
 		
 
 	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
