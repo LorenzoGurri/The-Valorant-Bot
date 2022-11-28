@@ -15,7 +15,7 @@ from pymongo import MongoClient
 import MyButton
 # Class stuff
 import Agent
-import player
+import Player
 
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
@@ -184,7 +184,7 @@ async def stats(msg, channel, author):
 async def lineups(msg, channel):
 
 	if len(msg) != 7 :
-		await channel.send("**USAGE**: !tvb lineups [map] [site] [attack / defense] [start] [agents] ")
+		await channel.send("**USAGE**: !tvb lineups [map] [site] [type] [start] [agents] ")
 		return
 	Map = msg[2].lower()
 	Site = msg[3].lower()
