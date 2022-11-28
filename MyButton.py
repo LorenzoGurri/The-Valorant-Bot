@@ -8,6 +8,7 @@ class MyButton(Button):
 	def __init__(self, teamName, roster):
 		super().__init__(label = teamName, style = discord.ButtonStyle.primary)
 		self.roster = roster
+
 	# Callback Function
 	async def callback(self, interaction):
 		msg = discord.Embed(
@@ -36,4 +37,16 @@ class PlayerButton(Button):
 		msg = discord.Embed(title = "Copied to Clipboard!")
 		await interaction.response.send_message(embed = msg)
 
-		
+# Custon Fun Button to display Funny Crosshairs
+class FunButton(Button):
+	def __init__(self, xhair, image):
+		super().__init__(label = xhair["name"], style = discord.ButtonStyle.grey, emoji = image)
+		self.code = xhair["code"]
+
+	async def callback(self, interaction):
+		clipboard.copy(self.code)
+		msg = discord.Embed(title= "Copied to Clipboard!")
+		await interaction.response.send_message(embed = msg)
+
+
+

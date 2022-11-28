@@ -15,7 +15,7 @@ from pymongo import MongoClient
 import MyButton
 # Class stuff
 import Agent
-import Player
+import player
 
 # Loads the .env file that resides on the same level as the script.
 load_dotenv()
@@ -311,7 +311,17 @@ async def crosshairs(msg, channel):
 			await channel.send("Professional Valorant Teams", view = view)
 
 		elif (typing.lower().startswith("fun")):
-			await channel.send("Work in progess")
+			path = "crosshairs/funCrosshairs.json"
+
+			with open(path, "r") as f:
+				data = json.load(f)
+
+			for xhair in data["Crosshairs"]:
+				# Using the player button from the pros to show these
+				funHair = MyButton.PlayerButton(xhair["name"], xhair["code"], xhair["image"])
+				view.add_item(funHair)
+			
+			await channel.send("Funny Crosshairs", view = view)
 
 #HELP: Users will be able top see what commands we offer
 async def help(msg, channel, message):
@@ -322,17 +332,17 @@ async def help(msg, channel, message):
 		color = 0xFF5733
 	)
 	msg.add_field(
-		name = "Connect (complete)",
+		name = "Connect",
 		value = "!tvb connect [username#TAG]", 
 		inline = False
 		)
 	msg.add_field(
-		name = "Disconnect (complete)",
+		name = "Disconnect",
 		value = "!tvb disconnect", 
 		inline = False
 		)
 	msg.add_field(
-		name = "Stats (complete)", 
+		name = "Stats", 
 		value = "!tvb stats [region] [username#TAG]\n!tvb stats [ap,br,eu,kr,latam,na]",
 		inline = False
 		)
@@ -347,12 +357,12 @@ async def help(msg, channel, message):
 		inline = False
 		)
 	msg.add_field(
-		name = "Feedback (complete)",
+		name = "Feedback",
 		value = "!tvb feedback",
 		inline = False
 		)
 	msg.add_field(
-		name = "Help (complete)",
+		name = "Help",
 		value = "You already used this command to see this??? \n but ... !tvb help", 
 		inline = False
 		)
@@ -394,8 +404,8 @@ async def on_message(message):
 		else:
 			await message.channel.send("**USAGE**: !tvb [command]")
 	# Sends Webex Link for are Wednesday Meetings 
-	elif message.content.startswith("Meeting") or message.content.startswith("meet"):
-		await message.channel.send("https://rensselaer.webex.com/meet/toftl")
+	# elif message.content.startswith("Meeting") or message.content.startswith("meet"):
+	# 	await message.channel.send("https://rensselaer.webex.com/meet/toftl")
 		
 
 	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
