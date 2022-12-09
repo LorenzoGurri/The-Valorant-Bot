@@ -28,7 +28,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run unittests
         run: |
-          python -m unittest tests/agent_test.py
-          python -m unittest tests/mybutton_test.py
-          python -m unittest tests/player_test.py
+          python -m unittest tests/TestAgent.py
+          python -m unittest tests/TestPlayer.py
 
