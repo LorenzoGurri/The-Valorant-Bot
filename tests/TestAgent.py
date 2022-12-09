@@ -1,11 +1,13 @@
 import unittest
 import Agent
 
-data = {"agent" : "NAME",
-        "description" : "DESC",
-        "abilities" : "ABILITIES",
-        "role" : {"roleName": "EXAMPLE ROLE"},
-        "displayIcon" : "example"}
+data = {
+    "agent": "NAME",
+    "description": "DESC",
+    "abilities": "ABILITIES",
+    "role": {"roleName": "EXAMPLE ROLE"},
+    "displayIcon": "example",
+}
 
 
 class TestAgent(unittest.TestCase):

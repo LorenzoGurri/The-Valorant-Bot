@@ -1,24 +1,25 @@
 import json
 
-class Agent():
-	def __init__(self, data):
-		self.agent = data['agent']
-		self.description = data['description']
-		self.abilities = data['abilities']
-		self.role = data['role']['roleName']
-		self.image = data['displayIcon']
 
-	def printName(self):
-		return self.agent
+class Agent:
+    def __init__(self, data):
+        self.agent = data["agent"]
+        self.description = data["description"]
+        self.abilities = data["abilities"]
+        self.role = data["role"]["roleName"]
+        self.image = data["displayIcon"]
 
-	def printDescription(self):
-		return self.description
+    def printName(self):
+        return self.agent
 
-	def printAbilities(self):
-		return self.abilities
+    def printDescription(self):
+        return self.description
 
-	def printRole(self):
-		return self.role
+    def printAbilities(self):
+        return self.abilities
 
-	def printImage(self):
-		return self.image
+    def printRole(self):
+        return self.role
+
+    def printImage(self):
+        return self.image
