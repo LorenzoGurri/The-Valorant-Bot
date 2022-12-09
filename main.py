@@ -260,7 +260,7 @@ async def agents(msg, channel):
 					value=ability['description'],
 					inline=False
 				)
-			elif ability['cost'] == 'null':
+			elif ability['cost'] == None:
 				output.add_field(
 					name="Ability: " + ability['name'] + " (" + slot+")",
 					value=ability['description'] + "\n*Cost: Free*",
